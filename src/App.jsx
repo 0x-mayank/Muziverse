@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { FaSpotify, FaSearch, FaSync } from 'react-icons/fa';
+// --- FIX: Using a valid icon (FaSyncAlt) from the 'fa' library to resolve the error ---
+import { FaSpotify, FaSearch, FaSyncAlt } from 'react-icons/fa';
 
+// --- Configuration & Constants ---
 const BACKEND_URL = 'https://muziverse-backend.onrender.com';
 const ENGLISH_GENRES = [
     'Pop', 'Hip-Hop', 'Rock', 'Indie', 'Electronic', 'Dance', 'Phonk', 'R-n-B', 'Metal', 'Jazz', 'Country', 'Acoustic'
@@ -10,8 +12,10 @@ const HINDI_GENRES = [
     'Ghazal', 'Classical', 'Desi-Pop', 'Haryanvi','Hindi-Oldies'
 ];
 
+// --- SVG Illustrations ---
 const InitialStateIcon = () => (
     <div className="text-center">
+        {/* --- NEW, CLEANER ICON --- */}
         <svg className="w-40 h-40 text-gray-800 mx-auto mb-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M3 10v4" />
             <path d="M7 6v12" />
@@ -24,8 +28,15 @@ const InitialStateIcon = () => (
     </div>
 );
 
+// --- UI Components ---
+
 const ControlPanel = ({ language, setLanguage, genres, selectedGenre, setSelectedGenre, onSearch, isLoading }) => (
     <aside className="w-full md:w-1/4 lg:w-1/5 bg-black/20 p-6 rounded-xl flex flex-col gap-8">
+        {/* --- NEW: Mobile Header --- */}
+        <div className="text-center md:hidden">
+            <h1 className="text-3xl font-bold text-white">Muziverse</h1>
+            <p className="text-gray-400 text-sm">Your personalized genre picks</p>
+        </div>
         <div>
             <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Language</h2>
             <div className="bg-gray-800 rounded-full p-1 flex items-center border border-gray-700">
@@ -86,11 +97,13 @@ const Loader = () => (
 const RefreshButton = ({ onRefresh, isLoading }) => (
      <div className="text-center mt-8">
         <button onClick={onRefresh} disabled={isLoading} className="bg-gray-800 hover:bg-gray-700 text-white font-semibold py-3 px-6 rounded-full transition-colors duration-300 flex items-center justify-center gap-2 disabled:bg-gray-600 disabled:cursor-not-allowed mx-auto">
-            <FaSync size={18} className={isLoading ? 'animate-spin' : ''} />
+            <FaSyncAlt size={18} className={isLoading ? 'animate-spin' : ''} />
             Get New Songs
         </button>
     </div>
 );
+
+// --- Main App Component ---
 export default function App() {
     const [language, setLanguage] = useState('english');
     const [genres, setGenres] = useState(ENGLISH_GENRES.sort());
@@ -178,7 +191,8 @@ export default function App() {
             />
 
             <main className="flex-grow flex flex-col">
-                <header className="text-left mb-6">
+                {/* --- UPDATED: Desktop Header --- */}
+                <header className="text-left mb-6 hidden md:block">
                     <h1 className="text-3xl font-bold text-white">Muziverse</h1>
                     <p className="text-gray-400">Your personalized genre picks</p>
                 </header>

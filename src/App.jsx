@@ -5,7 +5,7 @@ import { FaSpotify, FaSearch, FaSyncAlt } from 'react-icons/fa';
 // --- Configuration & Constants ---
 const BACKEND_URL = 'https://muziverse-backend.onrender.com';
 const ENGLISH_GENRES = [
-    'Pop', 'Hip-Hop', 'Rock', 'Indie', 'Electronic', 'Dance', 'Phonk', 'R-n-B', 'Metal', 'Jazz', 'Country', 'Acoustic'
+    'Pop', 'Hip-Hop', 'Rock', 'Indie', 'Electronic', 'Dance', 'Phonk', 'R&B', 'Metal', 'Jazz', 'Country', 'Acoustic'
 ];
 const HINDI_GENRES = [
     'Bollywood', 'Desi-Hip-Hop', 'Indie', 'Punjabi',

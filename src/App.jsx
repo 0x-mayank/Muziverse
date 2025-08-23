@@ -63,18 +63,35 @@ const SongCard = ({ track }) => {
     const placeholderImage = `https://placehold.co/300x300/121212/ffffff?text=${encodeURIComponent(track.album)}`;
     return (
         <div className="bg-black/20 rounded-lg overflow-hidden shadow-lg card-hover-effect animate-fade-in group relative">
-            <img src={track.image || placeholderImage} alt={`Album art for ${track.album}`} className="w-full h-auto aspect-square object-cover transition-transform duration-500 group-hover:scale-110" onError={(e) => { e.currentTarget.src = placeholderImage; }} />
+            <img 
+                src={track.image || placeholderImage} 
+                alt={`Album art for ${track.album}`} 
+                className="w-full h-auto aspect-square object-cover transition-transform duration-500 group-hover:scale-110" 
+                onError={(e) => { e.currentTarget.src = placeholderImage; }} 
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+            
+            {/* --- Track Info --- */}
             <div className="absolute bottom-0 left-0 p-4">
                 <h3 className="font-bold text-lg text-white truncate" title={track.name}>{track.name}</h3>
                 <p className="text-gray-300 text-sm truncate" title={track.artist}>{track.artist}</p>
             </div>
-            <a href={track.spotify_url} target="_blank" rel="noopener noreferrer" className="absolute top-4 right-4 bg-purple-600 text-white p-3 rounded-full transform transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110">
-                <FaSpotify size={20} />
+
+            {/* --- Centered Play Button --- */}
+            <a 
+                href={track.spotify_url} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            >
+                <div className="bg-purple-600 hover:bg-purple-700 text-white p-5 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-110">
+                    <FaSpotify size={28} />
+                </div>
             </a>
         </div>
     );
 };
+
 
 const MessageDisplay = ({ message, type = 'info' }) => {
     const colorClass = type === 'error' ? 'text-red-400' : 'text-gray-400';
